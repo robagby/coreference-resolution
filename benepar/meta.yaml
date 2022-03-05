@@ -1,0 +1,57 @@
+{% set name = "benepar" %}
+{% set version = "0.2.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+  sha256: 212177314968f1bc389b3201c06aa06a563c47e89fd566544536c7595ad5f652
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  host:
+    - dataclasses;python_version <'3.7'
+    - nltk >=3.2
+    - pip
+    - protobuf
+    - python
+    - sentencepiece >=0.1.91
+    - spacy >=2.0.9
+    - tokenizers >=0.9.4
+    - torch >=1.6.0
+    - torch-struct >=0.5
+    - transformers[torch,tokenizers] >=4.2.2
+  run:
+    - dataclasses;python_version <'3.7'
+    - nltk >=3.2
+    - protobuf
+    - python
+    - sentencepiece >=0.1.91
+    - spacy >=2.0.9
+    - tokenizers >=0.9.4
+    - torch >=1.6.0
+    - torch-struct >=0.5
+    - transformers[torch,tokenizers] >=4.2.2
+
+test:
+  imports:
+    - benepar
+    - benepar.integrations
+
+about:
+  home: "https://github.com/nikitakit/self-attentive-parser"
+  license: Apache Software
+  license_family: APACHE
+  license_file: 
+  summary: "Berkeley Neural Parser"
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here
